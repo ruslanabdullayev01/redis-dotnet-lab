@@ -60,7 +60,6 @@ cd Redis.Cache
 
 Run the application:
 
-
 docker compose up -d --build
 
 ---
