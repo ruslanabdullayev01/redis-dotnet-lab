@@ -1,0 +1,13 @@
+@Redis.Cache_HostAddress = http://localhost:7010
+
+### Get all products
+GET {{Redis.Cache_HostAddress}}/products
+Accept: application/json
+
+###
+
+### Get product by id (test cache)
+GET {{Redis.Cache_HostAddress}}/products/1
+Accept: application/json
+
+###
