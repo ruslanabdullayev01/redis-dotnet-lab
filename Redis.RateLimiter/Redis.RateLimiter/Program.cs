@@ -1,4 +1,5 @@
 using Redis.RateLimiter.Middlewares;
+using Redis.RateLimiter.Options;
 using Redis.RateLimiter.Services;
 using Redis.RateLimiter.Services.Interfaces;
 using StackExchange.Redis;
@@ -8,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
+builder.Services.Configure<RateLimiterOptions>(builder.Configuration.GetSection("RateLimiter"));
+
 builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
 {
     var configuration = builder.Configuration["Redis:ConnectionString"]
@@ -15,7 +18,10 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
 
     return ConnectionMultiplexer.Connect(configuration);
 });
+
 builder.Services.AddSingleton<IRateLimiterService, RedisRateLimiterService>();
+
+builder.Services.AddSingleton<IRateLimitKeyGenerator, RateLimitKeyGenerator>();
 
 var app = builder.Build();
 
