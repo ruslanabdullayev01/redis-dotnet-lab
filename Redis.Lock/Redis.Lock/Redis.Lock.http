@@ -1,0 +1,6 @@
+@Redis.Lock_HostAddress = http://localhost:5208
+
+GET {{Redis.Lock_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
