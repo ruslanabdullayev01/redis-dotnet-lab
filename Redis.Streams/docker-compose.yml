@@ -7,11 +7,11 @@ services:
       - "6379:6379"
     restart: always
 
-  redis-rate-limiter-api:
+  redis-streams-api:
     build:
-      context: ./Redis.RateLimiter
+      context: ./Redis.Streams
       dockerfile: Dockerfile
-    container_name: redis-rate-limiter-api
+    container_name: redis-streams-api
     ports:
       - "5000:8080"
     depends_on:
